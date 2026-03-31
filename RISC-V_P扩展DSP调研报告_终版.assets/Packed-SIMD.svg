@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%"
+    style="background-color: #ffffff;">
+    <style>
+        /* 学术风格字体定义 */
+        text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            fill: #333333;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            fill: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            fill: #444444;
+        }
+
+        /* 文本颜色：根据背景深浅自适应 */
+        .text-dark {
+            font-size: 13px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #333333;
+        }
+
+        .text-light {
+            font-size: 13px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #ffffff;
+        }
+
+        .text-dark-small {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #333333;
+        }
+
+        .text-light-small {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #ffffff;
+        }
+
+        /* * 寄存器色彩体系 (参考提供的蓝-橘配色)
+         */
+
+        /* 完整寄存器：浅中性灰 */
+        .reg-base {
+            fill: #f0f4f8;
+            stroke: #b0bec5;
+            stroke-width: 1.2;
+        }
+
+        /* 32-bit (2 Lanes) */
+        .w1 {
+            fill: #4873a6;
+            stroke: #2e4f76;
+            stroke-width: 1.2;
+        }
+
+        /* 深中蓝 */
+        .w0 {
+            fill: #abcbf0;
+            stroke: #7b9cc4;
+            stroke-width: 1.2;
+        }
+
+        /* 浅蓝 */
+
+        /* 16-bit (4 Lanes - 完美对应参考图四段渐变) */
+        .h3 {
+            fill: #1e3a5f;
+            stroke: #0f213b;
+            stroke-width: 1.2;
+        }
+
+        /* 藏青深蓝 */
+        .h2 {
+            fill: #5b8bcf;
+            stroke: #3b6399;
+            stroke-width: 1.2;
+        }
+
+        /* 主题蓝 */
+        .h1 {
+            fill: #99badd;
+            stroke: #6f92b8;
+            stroke-width: 1.2;
+        }
+
+        /* 柔和浅蓝 */
+        .h0 {
+            fill: #cdddf2;
+            stroke: #9eb2cc;
+            stroke-width: 1.2;
+        }
+
+        /* 极淡冰蓝 */
+
+        /* 8-bit (8 Lanes - 细腻的 8 阶渐变) */
+        .b7 {
+            fill: #172d4a;
+            stroke: #0a172b;
+            stroke-width: 1.2;
+        }
+
+        .b6 {
+            fill: #244268;
+            stroke: #122845;
+            stroke-width: 1.2;
+        }
+
+        .b5 {
+            fill: #355b8c;
+            stroke: #1e3b61;
+            stroke-width: 1.2;
+        }
+
+        .b4 {
+            fill: #4a78b5;
+            stroke: #2d5082;
+            stroke-width: 1.2;
+        }
+
+        .b3 {
+            fill: #6597d1;
+            stroke: #426fa6;
+            stroke-width: 1.2;
+        }
+
+        .b2 {
+            fill: #86b6e8;
+            stroke: #5c8fc2;
+            stroke-width: 1.2;
+        }
+
+        .b1 {
+            fill: #add2f5;
+            stroke: #7ea8d1;
+            stroke-width: 1.2;
+        }
+
+        .b0 {
+            fill: #d6ebff;
+            stroke: #abc3dc;
+            stroke-width: 1.2;
+        }
+
+        /* Rd 结果寄存器：浅蜜桃橘色 */
+        .rd-box {
+            fill: #f5c29a;
+            stroke: #cd9366;
+            stroke-width: 1.2;
+        }
+
+        /* 算术逻辑单元(OP)和箭头：高对比深灰色 */
+        .op-box {
+            fill: #ffffff;
+            stroke: #333333;
+            stroke-width: 1.2;
+        }
+
+        .arrow {
+            stroke: #333333;
+            stroke-width: 1.2;
+            fill: none;
+        }
+
+        .arrow-head {
+            fill: #333333;
+        }
+
+        /* 外围计算虚线框 */
+        .inst-box {
+            fill: none;
+            stroke: #b0bec5;
+            stroke-width: 1;
+            stroke-dasharray: 4, 4;
+        }
+    </style>
+
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+        </marker>
+    </defs>
+
+    <text x="30" y="40" class="title">Register Element Division (Packed SIMD)</text>
+
+    <text x="30" y="90" class="subtitle" dominant-baseline="middle">Full Register</text>
+    <rect x="150" y="70" width="600" height="40" class="reg-base" />
+    <text x="450" y="90" class="text-dark">64-bit Integer Register (Treated as a single entity)</text>
+
+    <text x="30" y="140" class="subtitle" dominant-baseline="middle">.W (32-bit)</text>
+    <rect x="150" y="120" width="300" height="30" class="w1" />
+    <text x="300" y="135" class="text-light">Lane 1</text>
+    <rect x="450" y="120" width="300" height="30" class="w0" />
+    <text x="600" y="135" class="text-dark">Lane 0</text>
+
+    <text x="30" y="190" class="subtitle" dominant-baseline="middle">.H (16-bit)</text>
+    <rect x="150" y="170" width="150" height="30" class="h3" /><text x="225" y="185" class="text-light">Lane 3</text>
+    <rect x="300" y="170" width="150" height="30" class="h2" /><text x="375" y="185" class="text-light">Lane 2</text>
+    <rect x="450" y="170" width="150" height="30" class="h1" /><text x="525" y="185" class="text-dark">Lane 1</text>
+    <rect x="600" y="170" width="150" height="30" class="h0" /><text x="675" y="185" class="text-dark">Lane 0</text>
+
+    <text x="30" y="240" class="subtitle" dominant-baseline="middle">.B (8-bit)</text>
+    <rect x="150" y="220" width="75" height="30" class="b7" /><text x="187.5" y="235" class="text-light-small">L7</text>
+    <rect x="225" y="220" width="75" height="30" class="b6" /><text x="262.5" y="235" class="text-light-small">L6</text>
+    <rect x="300" y="220" width="75" height="30" class="b5" /><text x="337.5" y="235" class="text-light-small">L5</text>
+    <rect x="375" y="220" width="75" height="30" class="b4" /><text x="412.5" y="235" class="text-light-small">L4</text>
+    <rect x="450" y="220" width="75" height="30" class="b3" /><text x="487.5" y="235" class="text-dark-small">L3</text>
+    <rect x="525" y="220" width="75" height="30" class="b2" /><text x="562.5" y="235" class="text-dark-small">L2</text>
+    <rect x="600" y="220" width="75" height="30" class="b1" /><text x="637.5" y="235" class="text-dark-small">L1</text>
+    <rect x="675" y="220" width="75" height="30" class="b0" /><text x="712.5" y="235" class="text-dark-small">L0</text>
+
+
+    <text x="30" y="320" class="title">Parallel Computation Across Lanes (e.g., PADD.H)</text>
+
+    <rect x="135" y="420" width="630" height="60" rx="4" class="inst-box" />
+
+    <rect x="160" y="360" width="55" height="25" class="h3" /><text x="187.5" y="372.5"
+        class="text-light-small">Rs1</text>
+    <rect x="235" y="360" width="55" height="25" class="h3" /><text x="262.5" y="372.5"
+        class="text-light-small">Rs2</text>
+    <circle cx="225" cy="450" r="14" class="op-box" /><text x="225" y="450" class="text-dark">OP</text>
+    <path d="M 187.5 385 L 187.5 450 L 211 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 262.5 385 L 262.5 450 L 239 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 225 464 L 225 505" class="arrow" marker-end="url(#arrow)" />
+    <rect x="155" y="510" width="140" height="25" class="rd-box" /><text x="225" y="522.5" class="text-dark-small">Rd
+        (Lane 3)</text>
+
+    <rect x="310" y="360" width="55" height="25" class="h2" /><text x="337.5" y="372.5"
+        class="text-light-small">Rs1</text>
+    <rect x="385" y="360" width="55" height="25" class="h2" /><text x="412.5" y="372.5"
+        class="text-light-small">Rs2</text>
+    <circle cx="375" cy="450" r="14" class="op-box" /><text x="375" y="450" class="text-dark">OP</text>
+    <path d="M 337.5 385 L 337.5 450 L 361 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 412.5 385 L 412.5 450 L 389 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 375 464 L 375 505" class="arrow" marker-end="url(#arrow)" />
+    <rect x="305" y="510" width="140" height="25" class="rd-box" /><text x="375" y="522.5" class="text-dark-small">Rd
+        (Lane 2)</text>
+
+    <rect x="460" y="360" width="55" height="25" class="h1" /><text x="487.5" y="372.5"
+        class="text-dark-small">Rs1</text>
+    <rect x="535" y="360" width="55" height="25" class="h1" /><text x="562.5" y="372.5"
+        class="text-dark-small">Rs2</text>
+    <circle cx="525" cy="450" r="14" class="op-box" /><text x="525" y="450" class="text-dark">OP</text>
+    <path d="M 487.5 385 L 487.5 450 L 511 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 562.5 385 L 562.5 450 L 539 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 525 464 L 525 505" class="arrow" marker-end="url(#arrow)" />
+    <rect x="455" y="510" width="140" height="25" class="rd-box" /><text x="525" y="522.5" class="text-dark-small">Rd
+        (Lane 1)</text>
+
+    <rect x="610" y="360" width="55" height="25" class="h0" /><text x="637.5" y="372.5"
+        class="text-dark-small">Rs1</text>
+    <rect x="685" y="360" width="55" height="25" class="h0" /><text x="712.5" y="372.5"
+        class="text-dark-small">Rs2</text>
+    <circle cx="675" cy="450" r="14" class="op-box" /><text x="675" y="450" class="text-dark">OP</text>
+    <path d="M 637.5 385 L 637.5 450 L 661 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 712.5 385 L 712.5 450 L 689 450" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 675 464 L 675 505" class="arrow" marker-end="url(#arrow)" />
+    <rect x="605" y="510" width="140" height="25" class="rd-box" /><text x="675" y="522.5" class="text-dark-small">Rd
+        (Lane 0)</text>
+
+</svg>

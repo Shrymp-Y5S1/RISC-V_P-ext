@@ -1,0 +1,271 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 310" width="100%" height="100%"
+    style="background-color: #ffffff;">
+    <style>
+        text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            fill: #333333;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            fill: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            fill: #444444;
+        }
+
+        .text-dark {
+            font-size: 13px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #333333;
+        }
+
+        .text-light {
+            font-size: 13px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #ffffff;
+        }
+
+        .text-dark-small {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #333333;
+        }
+
+        .text-light-small {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #ffffff;
+        }
+
+        .b3 {
+            fill: #6597d1;
+            stroke: #426fa6;
+            stroke-width: 1.2;
+        }
+
+        .b2 {
+            fill: #86b6e8;
+            stroke: #5c8fc2;
+            stroke-width: 1.2;
+        }
+
+        .b1 {
+            fill: #add2f5;
+            stroke: #7ea8d1;
+            stroke-width: 1.2;
+        }
+
+        .b0 {
+            fill: #d6ebff;
+            stroke: #abc3dc;
+            stroke-width: 1.2;
+        }
+
+        .rd-box {
+            fill: #f5c29a;
+            stroke: #cd9366;
+            stroke-width: 1.2;
+        }
+
+        .vxsat-box {
+            fill: #fce7e7;
+            stroke: #e57373;
+            stroke-width: 1.2;
+            rx: 4px;
+            stroke-dasharray: 2, 2;
+        }
+
+        .op-box {
+            fill: #ffffff;
+            stroke: #333333;
+            stroke-width: 1.2;
+        }
+
+        .code-bg {
+            fill: #f8f9fa;
+            stroke: #cbd5e1;
+            stroke-width: 1.2;
+            rx: 8px;
+        }
+
+        .arrow {
+            stroke: #333333;
+            stroke-width: 1.2;
+            fill: none;
+        }
+
+        .arrow-head {
+            fill: #333333;
+        }
+
+        .arrow-dashed {
+            stroke: #e57373;
+            stroke-width: 1.2;
+            fill: none;
+            stroke-dasharray: 4, 4;
+        }
+
+        .arrow-head-red {
+            fill: #e57373;
+        }
+
+        .inst-box {
+            fill: none;
+            stroke: #b0bec5;
+            stroke-width: 1;
+            stroke-dasharray: 4, 4;
+        }
+
+        .op-divider {
+            stroke: #ccc;
+            stroke-width: 0.8;
+            stroke-dasharray: 3, 3;
+        }
+
+        .combine-bus {
+            stroke: #cd9366;
+            stroke-width: 2.2;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        .combine-node {
+            fill: #f5c29a;
+            stroke: #cd9366;
+            stroke-width: 1.2;
+        }
+    </style>
+
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+        </marker>
+        <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head-red" />
+        </marker>
+    </defs>
+
+    <!-- Title -->
+    <text x="30" y="28" class="title">PSADD.B: Packed Saturated Add Byte</text>
+    <text x="30" y="48" class="subtitle">d[i] = sat(a[i] + b[i]), clamp [-128, 127] (XLEN=32)</text>
+
+    <!-- Shared inst-box wrapping all OP rects -->
+    <rect x="40" y="92" width="525" height="76" rx="4" class="inst-box" />
+
+    <!-- ======== Lane 3 (cx=85) ======== -->
+    <rect x="31" y="58" width="34" height="24" class="b3" />
+    <text x="48" y="70" class="text-light-small">Rs1</text>
+    <rect x="105" y="58" width="34" height="24" class="b3" />
+    <text x="122" y="70" class="text-light-small">Rs2</text>
+
+    <rect x="53" y="100" width="64" height="60" rx="6" class="op-box" />
+    <text x="85" y="122" class="text-dark-small" style="font-weight: bold;">Add</text>
+    <line x1="53" y1="130" x2="117" y2="130" class="op-divider" />
+    <text x="85" y="147" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">Sat</text>
+
+    <path d="M 48 82 L 48 118 L 55 118" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 122 82 L 122 118 L 115 118" class="arrow" marker-end="url(#arrow)" />
+
+    <path d="M 85 160 L 85 176" class="arrow" marker-end="url(#arrow)" />
+    <rect x="40" y="176" width="90" height="24" class="rd-box" />
+    <text x="85" y="188" class="text-dark-small">d[31:24]</text>
+
+    <!-- ======== Lane 2 (cx=230) ======== -->
+    <rect x="176" y="58" width="34" height="24" class="b2" />
+    <text x="193" y="70" class="text-light-small">Rs1</text>
+    <rect x="250" y="58" width="34" height="24" class="b2" />
+    <text x="267" y="70" class="text-light-small">Rs2</text>
+
+    <rect x="198" y="100" width="64" height="60" rx="6" class="op-box" />
+    <text x="230" y="122" class="text-dark-small" style="font-weight: bold;">Add</text>
+    <line x1="198" y1="130" x2="262" y2="130" class="op-divider" />
+    <text x="230" y="147" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">Sat</text>
+
+    <path d="M 193 82 L 193 118 L 200 118" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 267 82 L 267 118 L 260 118" class="arrow" marker-end="url(#arrow)" />
+
+    <path d="M 230 160 L 230 176" class="arrow" marker-end="url(#arrow)" />
+    <rect x="185" y="176" width="90" height="24" class="rd-box" />
+    <text x="230" y="188" class="text-dark-small">d[23:16]</text>
+
+    <!-- ======== Lane 1 (cx=375) ======== -->
+    <rect x="321" y="58" width="34" height="24" class="b1" />
+    <text x="338" y="70" class="text-dark-small">Rs1</text>
+    <rect x="395" y="58" width="34" height="24" class="b1" />
+    <text x="412" y="70" class="text-dark-small">Rs2</text>
+
+    <rect x="343" y="100" width="64" height="60" rx="6" class="op-box" />
+    <text x="375" y="122" class="text-dark-small" style="font-weight: bold;">Add</text>
+    <line x1="343" y1="130" x2="407" y2="130" class="op-divider" />
+    <text x="375" y="147" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">Sat</text>
+
+    <path d="M 338 82 L 338 118 L 345 118" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 412 82 L 412 118 L 405 118" class="arrow" marker-end="url(#arrow)" />
+
+    <path d="M 375 160 L 375 176" class="arrow" marker-end="url(#arrow)" />
+    <rect x="330" y="176" width="90" height="24" class="rd-box" />
+    <text x="375" y="188" class="text-dark-small">d[15:8]</text>
+
+    <!-- ======== Lane 0 (cx=520) ======== -->
+    <rect x="466" y="58" width="34" height="24" class="b0" />
+    <text x="483" y="70" class="text-dark-small">Rs1</text>
+    <rect x="540" y="58" width="34" height="24" class="b0" />
+    <text x="557" y="70" class="text-dark-small">Rs2</text>
+
+    <rect x="488" y="100" width="64" height="60" rx="6" class="op-box" />
+    <text x="520" y="122" class="text-dark-small" style="font-weight: bold;">Add</text>
+    <line x1="488" y1="130" x2="552" y2="130" class="op-divider" />
+    <text x="520" y="147" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">Sat</text>
+
+    <path d="M 483 82 L 483 118 L 490 118" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 557 82 L 557 118 L 550 118" class="arrow" marker-end="url(#arrow)" />
+
+    <path d="M 520 160 L 520 176" class="arrow" marker-end="url(#arrow)" />
+    <rect x="475" y="176" width="90" height="24" class="rd-box" />
+    <text x="520" y="188" class="text-dark-small">d[7:0]</text>
+
+    <!-- Detail panel -->
+    <rect x="580" y="92" width="112" height="100" rx="6" class="code-bg" />
+    <text x="636" y="108" class="text-dark-small" style="font-weight: bold;">Saturation</text>
+    <line x1="588" y1="116" x2="684" y2="116" class="op-divider" />
+    <text x="636" y="132" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333;">result = a + b</text>
+    <line x1="588" y1="143" x2="684" y2="143" class="arrow-dashed" />
+    <text x="636" y="157" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828; font-weight: bold;">Clamp:</text>
+    <text x="636" y="170" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">&gt;127 &#8594; 127</text>
+    <text x="636" y="183" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">&lt;-128 &#8594; -128</text>
+
+    <!-- Connector: inst-box to detail panel -->
+    <path d="M 565 130 L 580 130" stroke="#b0bec5" stroke-width="1" stroke-dasharray="3,3" fill="none" />
+
+    <!-- vxsat below detail panel -->
+    <path d="M 636 192 L 636 204" class="arrow-dashed" marker-end="url(#arrow-red)" />
+    <rect x="614" y="204" width="44" height="20" class="vxsat-box" />
+    <text x="636" y="214" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828; font-weight: bold;">vxsat</text>
+
+    <!-- Combine bus -->
+    <path d="M 85 200 L 85 220" class="arrow" />
+    <path d="M 230 200 L 230 220" class="arrow" />
+    <path d="M 375 200 L 375 220" class="arrow" />
+    <path d="M 520 200 L 520 220" class="arrow" />
+
+    <line x1="85" y1="220" x2="520" y2="220" class="combine-bus" />
+    <circle cx="303" cy="220" r="6" class="combine-node" />
+
+    <path d="M 303 226 L 303 244" class="arrow" marker-end="url(#arrow)" />
+    <rect x="238" y="244" width="130" height="25" rx="2" class="rd-box" />
+    <text x="303" y="256.5" class="text-dark-small" style="font-weight: bold;">Pack d[31:0]</text>
+
+    <path d="M 368 256.5 L 397 256.5" class="arrow" marker-end="url(#arrow)" />
+    <rect x="400" y="242" width="95" height="28" rx="4" class="code-bg" />
+    <text x="447.5" y="256" class="text-dark" style="font-weight: bold;">X[rd]</text>
+
+</svg>

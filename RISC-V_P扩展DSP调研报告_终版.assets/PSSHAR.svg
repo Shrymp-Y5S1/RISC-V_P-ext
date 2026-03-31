@@ -1,0 +1,306 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 310" width="100%" height="100%"
+    style="background-color: #ffffff;">
+    <style>
+        text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            fill: #333333;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            fill: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            fill: #444444;
+        }
+
+        .text-dark {
+            font-size: 13px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #333333;
+        }
+
+        .text-light {
+            font-size: 13px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #ffffff;
+        }
+
+        .text-dark-small {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #333333;
+        }
+
+        .text-light-small {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #ffffff;
+        }
+
+        .h3 {
+            fill: #1e3a5f;
+            stroke: #0f213b;
+            stroke-width: 1.2;
+        }
+
+        .h2 {
+            fill: #5b8bcf;
+            stroke: #3b6399;
+            stroke-width: 1.2;
+        }
+
+        .h1 {
+            fill: #99badd;
+            stroke: #6f92b8;
+            stroke-width: 1.2;
+        }
+
+        .h0 {
+            fill: #cdddf2;
+            stroke: #9eb2cc;
+            stroke-width: 1.2;
+        }
+
+        .rd-box {
+            fill: #f5c29a;
+            stroke: #cd9366;
+            stroke-width: 1.2;
+        }
+
+        .vxsat-box {
+            fill: #fce7e7;
+            stroke: #e57373;
+            stroke-width: 1.2;
+            rx: 4px;
+            stroke-dasharray: 2, 2;
+        }
+
+        .op-box {
+            fill: #ffffff;
+            stroke: #333333;
+            stroke-width: 1.2;
+        }
+
+        .code-bg {
+            fill: #f8f9fa;
+            stroke: #cbd5e1;
+            stroke-width: 1.2;
+            rx: 8px;
+        }
+
+        .arrow {
+            stroke: #333333;
+            stroke-width: 1.2;
+            fill: none;
+        }
+
+        .arrow-head {
+            fill: #333333;
+        }
+
+        .arrow-dashed {
+            stroke: #e57373;
+            stroke-width: 1.2;
+            fill: none;
+            stroke-dasharray: 4, 4;
+        }
+
+        .arrow-head-red {
+            fill: #e57373;
+        }
+
+        .inst-box {
+            fill: none;
+            stroke: #b0bec5;
+            stroke-width: 1;
+            stroke-dasharray: 4, 4;
+        }
+
+        .op-divider {
+            stroke: #ccc;
+            stroke-width: 0.8;
+            stroke-dasharray: 3, 3;
+        }
+
+        .combine-bus {
+            stroke: #cd9366;
+            stroke-width: 2.2;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        .combine-node {
+            fill: #f5c29a;
+            stroke: #cd9366;
+            stroke-width: 1.2;
+        }
+
+        .scalar-box {
+            fill: #e8d5f5;
+            stroke: #9b59b6;
+            stroke-width: 1.2;
+            rx: 4px;
+        }
+
+        .scalar-bus {
+            stroke: #9b59b6;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+        }
+    </style>
+
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+        </marker>
+        <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head-red" />
+        </marker>
+    </defs>
+
+    <!-- Title -->
+    <text x="30" y="28" class="title">PSSHAR.HS: Packed Saturated Shift Arith Rounded</text>
+    <text x="30" y="48" class="subtitle">sshamt&lt;0: ASR+Round; sshamt&#8805;0: LSL+Saturate (XLEN=64)</text>
+
+    <!-- Scalar rs2 box -->
+    <rect x="233" y="58" width="140" height="22" rx="4" class="scalar-box" />
+    <text x="303" y="69" class="text-dark-small" style="font-weight: bold;">rs2[7:0] (shamt)</text>
+
+    <!-- Scalar vertical stem -->
+    <path d="M 303 80 L 303 92" class="scalar-bus" />
+    <!-- Scalar horizontal bus -->
+    <path d="M 85 92 L 520 92" class="scalar-bus" />
+
+    <!-- Shared inst-box wrapping all OP rects -->
+    <rect x="40" y="134" width="525" height="76" rx="4" class="inst-box" />
+
+    <!-- ======== Lane 3 (cx=85) ======== -->
+    <!-- Rs1 box -->
+    <rect x="56" y="100" width="58" height="22" class="h3" />
+    <text x="85" y="111" class="text-light-small">s1[63:48]</text>
+
+    <!-- L-path from scalar bus into OP left side -->
+    <path d="M 85 92 L 37 92 L 37 168 L 53 168" class="arrow" marker-end="url(#arrow)" />
+    <!-- Rs1 arrow down into OP top -->
+    <path d="M 85 122 L 85 142" class="arrow" marker-end="url(#arrow)" />
+
+    <!-- OP rect: 53..117, y=142..202 -->
+    <rect x="53" y="142" width="64" height="62" rx="6" class="op-box" />
+    <text x="85" y="156" style="font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333; font-weight: bold;">sshamt&lt;0?</text>
+    <line x1="53" y1="164" x2="117" y2="164" class="op-divider" />
+    <text x="85" y="177" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #333;">ASR+Rnd</text>
+    <line x1="53" y1="188" x2="117" y2="188" class="op-divider" />
+    <text x="85" y="198" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">LSL+Sat</text>
+
+    <!-- OP → Rd -->
+    <path d="M 85 204 L 85 218" class="arrow" marker-end="url(#arrow)" />
+    <rect x="40" y="218" width="90" height="24" class="rd-box" />
+    <text x="85" y="230" class="text-dark-small">d[63:48]</text>
+
+    <!-- ======== Lane 2 (cx=230) ======== -->
+    <rect x="201" y="100" width="58" height="22" class="h2" />
+    <text x="230" y="111" class="text-light-small">s1[47:32]</text>
+
+    <path d="M 230 92 L 182 92 L 182 168 L 198 168" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 230 122 L 230 142" class="arrow" marker-end="url(#arrow)" />
+
+    <rect x="198" y="142" width="64" height="62" rx="6" class="op-box" />
+    <text x="230" y="156" style="font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333; font-weight: bold;">sshamt&lt;0?</text>
+    <line x1="198" y1="164" x2="262" y2="164" class="op-divider" />
+    <text x="230" y="177" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #333;">ASR+Rnd</text>
+    <line x1="198" y1="188" x2="262" y2="188" class="op-divider" />
+    <text x="230" y="198" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">LSL+Sat</text>
+
+    <path d="M 230 204 L 230 218" class="arrow" marker-end="url(#arrow)" />
+    <rect x="185" y="218" width="90" height="24" class="rd-box" />
+    <text x="230" y="230" class="text-dark-small">d[47:32]</text>
+
+    <!-- ======== Lane 1 (cx=375) ======== -->
+    <rect x="346" y="100" width="58" height="22" class="h1" />
+    <text x="375" y="111" class="text-dark-small">s1[31:16]</text>
+
+    <path d="M 375 92 L 327 92 L 327 168 L 343 168" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 375 122 L 375 142" class="arrow" marker-end="url(#arrow)" />
+
+    <rect x="343" y="142" width="64" height="62" rx="6" class="op-box" />
+    <text x="375" y="156" style="font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333; font-weight: bold;">sshamt&lt;0?</text>
+    <line x1="343" y1="164" x2="407" y2="164" class="op-divider" />
+    <text x="375" y="177" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #333;">ASR+Rnd</text>
+    <line x1="343" y1="188" x2="407" y2="188" class="op-divider" />
+    <text x="375" y="198" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">LSL+Sat</text>
+
+    <path d="M 375 204 L 375 218" class="arrow" marker-end="url(#arrow)" />
+    <rect x="330" y="218" width="90" height="24" class="rd-box" />
+    <text x="375" y="230" class="text-dark-small">d[31:16]</text>
+
+    <!-- ======== Lane 0 (cx=520) ======== -->
+    <rect x="491" y="100" width="58" height="22" class="h0" />
+    <text x="520" y="111" class="text-dark-small">s1[15:0]</text>
+
+    <path d="M 520 92 L 472 92 L 472 168 L 488 168" class="arrow" marker-end="url(#arrow)" />
+    <path d="M 520 122 L 520 142" class="arrow" marker-end="url(#arrow)" />
+
+    <rect x="488" y="142" width="64" height="62" rx="6" class="op-box" />
+    <text x="520" y="156" style="font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333; font-weight: bold;">sshamt&lt;0?</text>
+    <line x1="488" y1="164" x2="552" y2="164" class="op-divider" />
+    <text x="520" y="177" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #333;">ASR+Rnd</text>
+    <line x1="488" y1="188" x2="552" y2="188" class="op-divider" />
+    <text x="520" y="198" style="font-size: 10px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">LSL+Sat</text>
+
+    <path d="M 520 204 L 520 218" class="arrow" marker-end="url(#arrow)" />
+    <rect x="475" y="218" width="90" height="24" class="rd-box" />
+    <text x="520" y="230" class="text-dark-small">d[15:0]</text>
+
+    <!-- Detail panel -->
+    <rect x="580" y="100" width="112" height="118" rx="6" class="code-bg" />
+    <text x="636" y="116" class="text-dark-small" style="font-weight: bold;">Operation</text>
+    <line x1="588" y1="124" x2="684" y2="124" class="op-divider" />
+
+    <!-- Y path (sshamt < 0) -->
+    <text x="636" y="137" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333; font-weight: bold;">Y: sshamt&lt;0</text>
+    <text x="636" y="150" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333;">x=sext(h)@0b0</text>
+    <text x="636" y="162" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #333;">r=(y+1)[16:1]</text>
+
+    <line x1="588" y1="170" x2="684" y2="170" class="arrow-dashed" />
+
+    <!-- N path (sshamt >= 0) -->
+    <text x="636" y="183" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828; font-weight: bold;">N: sshamt&#8805;0</text>
+    <text x="636" y="196" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">shx=sext(h)&lt;&lt;sa</text>
+    <text x="636" y="208" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828;">sat[-32768,32767]</text>
+
+    <!-- Connector: inst-box → detail panel -->
+    <path d="M 565 173 L 580 173" stroke="#b0bec5" stroke-width="1" stroke-dasharray="3,3" fill="none" />
+
+    <!-- vxsat below detail panel -->
+    <path d="M 636 218 L 636 230" class="arrow-dashed" marker-end="url(#arrow-red)" />
+    <rect x="614" y="230" width="44" height="20" class="vxsat-box" />
+    <text x="636" y="240" style="font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; fill: #c62828; font-weight: bold;">vxsat</text>
+
+    <!-- Combine bus -->
+    <path d="M 85 242 L 85 262" class="arrow" />
+    <path d="M 230 242 L 230 262" class="arrow" />
+    <path d="M 375 242 L 375 262" class="arrow" />
+    <path d="M 520 242 L 520 262" class="arrow" />
+
+    <line x1="85" y1="262" x2="520" y2="262" class="combine-bus" />
+    <circle cx="303" cy="262" r="6" class="combine-node" />
+
+    <path d="M 303 268 L 303 282" class="arrow" marker-end="url(#arrow)" />
+    <rect x="238" y="282" width="130" height="25" rx="2" class="rd-box" />
+    <text x="303" y="294.5" class="text-dark-small" style="font-weight: bold;">Pack d[63:0]</text>
+
+    <path d="M 368 294.5 L 397 294.5" class="arrow" marker-end="url(#arrow)" />
+    <rect x="400" y="280" width="95" height="28" rx="4" class="code-bg" />
+    <text x="447.5" y="294" class="text-dark" style="font-weight: bold;">X[rd]</text>
+
+</svg>
