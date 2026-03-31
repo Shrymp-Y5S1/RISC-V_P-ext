@@ -1,0 +1,28 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary / backup files
+*.tmp
+*.temp
+*.bak
+*.orig
+~$*
+
+# Logs
+*.log
+
+# Python cache (if scripts are added later)
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
