@@ -1,0 +1,12 @@
+.option norvc
+.text
+.align 2
+.globl test_pmulq_h_insn
+
+# 已按 P-ext-proposal 编码表固定 .insn 常量
+test_pmulq_h_insn:
+    li a1, 0x7fff8000
+    li a2, 0x40004000
+    # P-ext-proposal: opcode=0x3b, funct3=0x7, funct7=0x68
+    .insn r 0x3b, 0x7, 0x68, a0, a1, a2
+    ret
