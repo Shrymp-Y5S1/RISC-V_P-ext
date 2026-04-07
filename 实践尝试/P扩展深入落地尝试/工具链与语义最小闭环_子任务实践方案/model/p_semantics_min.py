@@ -176,7 +176,9 @@ def pmulqr_h(rs1: int, rs2: int) -> Tuple[int, int]:
     return pack_lanes(out, 16), int(vxsat)
 
 
-def pm2add_h(rs1: int, rs2: int, rd_in: int = 0, with_acc: bool = False) -> Tuple[int, int]:
+def pm2add_h(
+    rs1: int, rs2: int, rd_in: int = 0, with_acc: bool = False
+) -> Tuple[int, int]:
     a0 = sign_extend(rs1 & 0xFFFF, 16)
     a1 = sign_extend((rs1 >> 16) & 0xFFFF, 16)
     b0 = sign_extend(rs2 & 0xFFFF, 16)
@@ -189,7 +191,9 @@ def pm2add_h(rs1: int, rs2: int, rd_in: int = 0, with_acc: bool = False) -> Tupl
     return to_u32(acc), 0
 
 
-def pm4add_b(rs1: int, rs2: int, rd_in: int = 0, with_acc: bool = False) -> Tuple[int, int]:
+def pm4add_b(
+    rs1: int, rs2: int, rd_in: int = 0, with_acc: bool = False
+) -> Tuple[int, int]:
     a = unpack_lanes(rs1, 8, signed=True)
     b = unpack_lanes(rs2, 8, signed=True)
     acc = sum(x * y for x, y in zip(a, b))
@@ -236,21 +240,94 @@ def evaluate_case(case: Dict) -> Dict:
 
 def run_selftest() -> None:
     tests = [
-        {"instr": "PSADD.B", "rs1": 0x7F7F7F7F, "rs2": 0x01010101, "rd_in": 0, "expected": 0x7F7F7F7F, "vxsat": 1},
-        {"instr": "PSSUB.B", "rs1": 0x80808080, "rs2": 0x01010101, "rd_in": 0, "expected": 0x80808080, "vxsat": 1},
-        {"instr": "PSSHAR.HS", "rs1": 0x7FFF8000, "rs2": 0xFFFFFFFF, "rd_in": 0, "expected": 0x4000C000, "vxsat": 0},
-        {"instr": "PSSHLR.HS", "rs1": 0x00010001, "rs2": 0x00000010, "rd_in": 0, "expected": 0xFFFFFFFF, "vxsat": 1},
-        {"instr": "PMULQ.H", "rs1": 0x7FFF7FFF, "rs2": 0x00010001, "rd_in": 0, "expected": 0x00000000, "vxsat": 0},
-        {"instr": "PMULQR.H", "rs1": 0x7FFF7FFF, "rs2": 0x00010001, "rd_in": 0, "expected": 0x00010001, "vxsat": 0},
-        {"instr": "PM2ADD.H", "rs1": 0x00020001, "rs2": 0x00040003, "rd_in": 0, "expected": 0x0000000B, "vxsat": 0},
-        {"instr": "PM2ADDA.H", "rs1": 0x00020001, "rs2": 0x00040003, "rd_in": 5, "expected": 0x00000010, "vxsat": 0},
-        {"instr": "PM4ADD.B", "rs1": 0x01010101, "rs2": 0x02020202, "rd_in": 0, "expected": 0x00000008, "vxsat": 0},
-        {"instr": "PM4ADDA.B", "rs1": 0x01010101, "rs2": 0x02020202, "rd_in": 7, "expected": 0x0000000F, "vxsat": 0},
+        {
+            "instr": "PSADD.B",
+            "rs1": 0x7F7F7F7F,
+            "rs2": 0x01010101,
+            "rd_in": 0,
+            "expected": 0x7F7F7F7F,
+            "vxsat": 1,
+        },
+        {
+            "instr": "PSSUB.B",
+            "rs1": 0x80808080,
+            "rs2": 0x01010101,
+            "rd_in": 0,
+            "expected": 0x80808080,
+            "vxsat": 1,
+        },
+        {
+            "instr": "PSSHAR.HS",
+            "rs1": 0x7FFF8000,
+            "rs2": 0xFFFFFFFF,
+            "rd_in": 0,
+            "expected": 0x4000C000,
+            "vxsat": 0,
+        },
+        {
+            "instr": "PSSHLR.HS",
+            "rs1": 0x00010001,
+            "rs2": 0x00000010,
+            "rd_in": 0,
+            "expected": 0xFFFFFFFF,
+            "vxsat": 1,
+        },
+        {
+            "instr": "PMULQ.H",
+            "rs1": 0x7FFF7FFF,
+            "rs2": 0x00010001,
+            "rd_in": 0,
+            "expected": 0x00000000,
+            "vxsat": 0,
+        },
+        {
+            "instr": "PMULQR.H",
+            "rs1": 0x7FFF7FFF,
+            "rs2": 0x00010001,
+            "rd_in": 0,
+            "expected": 0x00010001,
+            "vxsat": 0,
+        },
+        {
+            "instr": "PM2ADD.H",
+            "rs1": 0x00020001,
+            "rs2": 0x00040003,
+            "rd_in": 0,
+            "expected": 0x0000000B,
+            "vxsat": 0,
+        },
+        {
+            "instr": "PM2ADDA.H",
+            "rs1": 0x00020001,
+            "rs2": 0x00040003,
+            "rd_in": 5,
+            "expected": 0x00000010,
+            "vxsat": 0,
+        },
+        {
+            "instr": "PM4ADD.B",
+            "rs1": 0x01010101,
+            "rs2": 0x02020202,
+            "rd_in": 0,
+            "expected": 0x00000008,
+            "vxsat": 0,
+        },
+        {
+            "instr": "PM4ADDA.B",
+            "rs1": 0x01010101,
+            "rs2": 0x02020202,
+            "rd_in": 7,
+            "expected": 0x0000000F,
+            "vxsat": 0,
+        },
     ]
 
     for item in tests:
         out = evaluate_case(item)
-        if out["expected_rd"] != item["expected"] or out["expected_vxsat"] != item["vxsat"]:
+        if (
+            out["expected_rd"] != item["expected"]
+            or out["expected_vxsat"] != item["vxsat"]
+        ):
             raise AssertionError(f"Selftest failed: {item['instr']} => {out}")
 
 
