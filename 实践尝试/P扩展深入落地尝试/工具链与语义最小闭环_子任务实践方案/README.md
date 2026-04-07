@@ -17,7 +17,7 @@
 ## 首周最小执行步骤
 
 1. 填写 version-lock.md。
-2. 在 WSL2 中执行 asm_l0/ 的 4 条指令编译与 objdump 冒烟。
+2. 在 WSL2 中执行 asm_l0/ 的最小子集 10 条指令编译与 objdump 冒烟。
 3. 运行 scripts/gen_cases.py 生成 cases。
 4. 运行 scripts/model_eval.py 生成 expected。
 5. 从 ISS 或 DUT 导出 actual。
@@ -37,7 +37,17 @@ L0 冒烟可直接运行:
 
 bash scripts/wsl_l0_smoke.sh
 
+语义闭环（WSL2）建议运行:
+
+bash scripts/wsl_run_minset.sh
+
 ## 推荐命令
+
+WSL2 (python3):
+
+python3 scripts/gen_cases.py --out cases/minset_seed_1_7_42_20260405.json --seeds 1,7,42,20260405 --random-per-seed 200
+python3 scripts/model_eval.py --cases cases/minset_seed_1_7_42_20260405.json --out expected/minset_seed_1_7_42_20260405.expected.json
+python3 scripts/diff.py --expected expected/minset_seed_1_7_42_20260405.expected.json --actual actual/minset_seed_1_7_42_20260405.actual.json --out reports/diff-minset.csv
 
 Windows PowerShell:
 
