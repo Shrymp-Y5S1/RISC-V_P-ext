@@ -29,7 +29,9 @@ def main() -> None:
     parser.add_argument("--cases", type=Path, required=True, help="输入 cases json")
     parser.add_argument("--out-json", type=Path, required=True, help="输出子集 json")
     parser.add_argument("--out-csv", type=Path, required=True, help="输出子集 csv")
-    parser.add_argument("--out-raw-template", type=Path, default=None, help="输出 raw 模板 csv")
+    parser.add_argument(
+        "--out-raw-template", type=Path, default=None, help="输出 raw 模板 csv"
+    )
     parser.add_argument("--start", type=int, default=0, help="起始索引，默认 0")
     parser.add_argument("--limit", type=int, default=20, help="导出数量，默认 20")
     args = parser.parse_args()
@@ -40,7 +42,7 @@ def main() -> None:
         raise ValueError("--limit must be > 0")
 
     all_cases = load_cases(args.cases)
-    subset = all_cases[args.start: args.start + args.limit]
+    subset = all_cases[args.start : args.start + args.limit]
 
     out_cases: List[Dict] = []
     for item in subset:
@@ -99,10 +101,14 @@ def main() -> None:
     if args.out_raw_template is not None:
         args.out_raw_template.parent.mkdir(parents=True, exist_ok=True)
         with args.out_raw_template.open("w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=["case_id", "actual_rd", "actual_vxsat"])
+            writer = csv.DictWriter(
+                f, fieldnames=["case_id", "actual_rd", "actual_vxsat"]
+            )
             writer.writeheader()
             for item in out_cases:
-                writer.writerow({"case_id": item["case_id"], "actual_rd": "", "actual_vxsat": ""})
+                writer.writerow(
+                    {"case_id": item["case_id"], "actual_rd": "", "actual_vxsat": ""}
+                )
 
     print(f"iss bundle json generated: {args.out_json}")
     print(f"iss bundle csv generated: {args.out_csv}")

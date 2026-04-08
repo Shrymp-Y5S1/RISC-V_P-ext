@@ -5,7 +5,6 @@ import re
 from pathlib import Path
 from typing import Dict, List, Optional
 
-
 ID_KEYS = ("case_id", "id", "case")
 RD_KEYS = ("actual_rd", "rd", "result_rd", "xrd")
 VXSAT_KEYS = ("actual_vxsat", "vxsat", "result_vxsat")
@@ -212,10 +211,16 @@ def dedup_cases(cases: List[Dict], strict: bool) -> List[Dict]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="将 ISS/DUT 原始输出转换为 actual json")
-    parser.add_argument("--raw", type=Path, required=True, help="原始输出文件（json/csv/txt）")
+    parser = argparse.ArgumentParser(
+        description="将 ISS/DUT 原始输出转换为 actual json"
+    )
+    parser.add_argument(
+        "--raw", type=Path, required=True, help="原始输出文件（json/csv/txt）"
+    )
     parser.add_argument("--out", type=Path, required=True, help="输出 actual json")
-    parser.add_argument("--strict", action="store_true", help="严格模式：遇到异常行直接报错")
+    parser.add_argument(
+        "--strict", action="store_true", help="严格模式：遇到异常行直接报错"
+    )
     args = parser.parse_args()
 
     if not args.raw.exists():

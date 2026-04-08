@@ -7,7 +7,6 @@ from collections import Counter
 from pathlib import Path
 from typing import Dict, List
 
-
 INSTR_WORDS = {
     "PSADD.B": 0x94C5853B,
     "PSSUB.B": 0xD4C5853B,
@@ -174,7 +173,14 @@ def write_raw_csv(path: Path, rows: List[Dict]) -> None:
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f,
-            fieldnames=["case_id", "instr", "actual_rd", "actual_vxsat", "status", "note"],
+            fieldnames=[
+                "case_id",
+                "instr",
+                "actual_rd",
+                "actual_vxsat",
+                "status",
+                "note",
+            ],
         )
         writer.writeheader()
         for row in rows:
@@ -182,12 +188,14 @@ def write_raw_csv(path: Path, rows: List[Dict]) -> None:
                 {
                     "case_id": row.get("case_id", ""),
                     "instr": row.get("instr", ""),
-                    "actual_rd": ""
-                    if "actual_rd" not in row
-                    else to_hex32(int(row["actual_rd"])),
-                    "actual_vxsat": ""
-                    if "actual_vxsat" not in row
-                    else int(row["actual_vxsat"]),
+                    "actual_rd": (
+                        ""
+                        if "actual_rd" not in row
+                        else to_hex32(int(row["actual_rd"]))
+                    ),
+                    "actual_vxsat": (
+                        "" if "actual_vxsat" not in row else int(row["actual_vxsat"])
+                    ),
                     "status": row.get("status", ""),
                     "note": row.get("note", ""),
                 }
@@ -221,10 +229,14 @@ def write_actual_json(path: Path, rows: List[Dict], source_path: Path) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="通过 qemu 执行 case 集并导出 raw/actual")
+    parser = argparse.ArgumentParser(
+        description="通过 qemu 执行 case 集并导出 raw/actual"
+    )
     parser.add_argument("--cases", type=Path, required=True, help="输入 cases json")
     parser.add_argument("--out-raw", type=Path, required=True, help="输出 raw csv")
-    parser.add_argument("--out-actual", type=Path, required=True, help="输出 actual json")
+    parser.add_argument(
+        "--out-actual", type=Path, required=True, help="输出 actual json"
+    )
     parser.add_argument(
         "--gcc-bin",
         type=str,
