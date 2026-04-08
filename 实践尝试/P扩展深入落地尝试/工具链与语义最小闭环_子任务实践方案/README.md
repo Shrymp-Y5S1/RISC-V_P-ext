@@ -37,6 +37,19 @@ L0 冒烟可直接运行:
 
 bash scripts/wsl_l0_smoke.sh
 
+L1 助记符冒烟（默认 clang 口径，自动优先 clang-22）:
+
+bash scripts/wsl_l1_smoke.sh
+
+如需对照 GNU 口径（预期会出现助记符不识别）:
+
+L1_TOOLCHAIN=gnu bash scripts/wsl_l1_smoke.sh
+
+说明:
+- `scripts/wsl_l1_smoke.sh` 在 clang 模式会先探测 `experimental-p` 能力，并自动识别本地 `p` 版本号。
+- 若本地 clang 构建未包含该能力，脚本会快速失败并给出提示，避免误判为样例语法问题。
+- 当前 LLVM22 (`p 0.18`) 实测结果: 最小子集 10 条中 9 条可编译，`psshlr.hs` 仍未被识别。
+
 语义闭环（WSL2）建议运行:
 
 bash scripts/wsl_run_minset.sh

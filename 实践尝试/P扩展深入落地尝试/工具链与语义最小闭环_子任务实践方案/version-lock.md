@@ -1,6 +1,6 @@
 # 版本锁定页
 
-更新时间: 2026-04-07
+更新时间: 2026-04-08
 维护人: HP
 
 ## 1. 规范版本
@@ -20,8 +20,17 @@
 - riscv64-linux-gnu-gcc --version: riscv64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
 - riscv64-linux-gnu-as --version: GNU assembler (GNU Binutils for Ubuntu) 2.42
 - riscv64-linux-gnu-objdump --version: GNU objdump (GNU Binutils for Ubuntu) 2.42
-- clang --version: WSL2 当前未安装 (command not found)
-- llvm-objdump --version: WSL2 当前未安装 (command not found)
+- clang-19 --version: Ubuntu clang version 19.1.1 (1ubuntu1~24.04.2)
+- /usr/lib/llvm-19/bin/llvm-objdump --version: Ubuntu LLVM version 19.1.1
+- clang-19 experimental 扩展探针: `--print-supported-extensions` 未出现 `p 0.21`（当前 Ubuntu 包构建不含 experimental-p）
+- clang-21 --version: Ubuntu clang version 21.1.8 (++20251221032922+2078da43e25a-1~exp1~20251221153059.70)
+- /usr/lib/llvm-21/bin/llvm-objdump --version: Ubuntu LLVM version 21.1.8
+- clang-21 experimental 扩展探针: `--print-supported-extensions` 出现 `p 0.14`
+- clang-21 L1 助记符冒烟: `-march=rv64i_p0p14` 下最小子集 10 条仍全部 `unrecognized instruction mnemonic`
+- clang-22 --version: Ubuntu clang version 22.1.3 (++20260402073256+4250a0fc5de9-1~exp1~20260402073413.57)
+- /usr/lib/llvm-22/bin/llvm-objdump --version: Ubuntu LLVM version 22.1.3
+- clang-22 experimental 扩展探针: `--print-supported-extensions` 出现 `p 0.18`
+- clang-22 L1 助记符冒烟: 最小子集 10 条通过 9 条（仅 `psshlr.hs` 未识别）
 
 ## 4. 执行环境
 
@@ -36,7 +45,10 @@
   - riscv64-linux-gnu-objdump -d build/psadd_b_insn.o > build/psadd_b_insn.objdump
   - bash scripts/wsl_l0_smoke.sh
 - L1 编译命令:
-  - clang --target=riscv32-unknown-elf -menable-experimental-extensions -march=<待填写> -mabi=ilp32 -c asm_l1/psadd_b_mnemonic.S -o build/psadd_b_mnemonic.o
+  - clang-22 --target=riscv64-unknown-elf -menable-experimental-extensions -march=rv64i_p0p18 -mabi=lp64 -c asm_l1/psadd_b_mnemonic.S -o build/psadd_b_mnemonic.o
+  - bash scripts/wsl_l1_smoke.sh
+  - CLANG_BIN=clang-22 bash scripts/wsl_l1_smoke.sh
+  - L1_TOOLCHAIN=gnu bash scripts/wsl_l1_smoke.sh
 - 样例生成:
   - python scripts/gen_cases.py --out cases/week1_seed20260405.json --seeds 20260405 --random-per-seed 200
 - 黄金评估:
@@ -49,3 +61,6 @@
 - 2026-04-07: 初始化版本锁定模板。
 - 2026-04-07: 切换 L0 命令模板为 WSL2 的 riscv64-linux-gnu 工具链口径。
 - 2026-04-07: 回填 WSL2 实机工具链版本、仓库 commit/branch 与 Python 版本。
+- 2026-04-07: 新增 LLVM19 口径信息与能力探针结论（Ubuntu clang-19.1.1 未暴露 experimental-p）。
+- 2026-04-08: 回填 LLVM21 安装与探针结果（支持 `p 0.14`，但 L1 最小子集助记符仍不可达）。
+- 2026-04-08: 回填 LLVM22 安装与探针结果（支持 `p 0.18`，L1 最小子集提升至 9/10）。
