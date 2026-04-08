@@ -7,8 +7,10 @@ cd "$ROOT_DIR"
 mkdir -p build
 
 TOOLCHAIN="${L1_TOOLCHAIN:-clang}"
+ALLOW_KNOWN_GAPS="${L1_ALLOW_KNOWN_GAPS:-0}"
 PASS=0
 FAIL=0
+KNOWN_GAP_COUNT=0
 P_VERSION=""
 
 detect_clang_bin() {
@@ -41,6 +43,17 @@ probe_clang_p_support() {
   return 0
 }
 
+is_known_gap() {
+  local src_base
+  src_base="$(basename "$1")"
+
+  if [[ "$TOOLCHAIN" == "clang" && "$P_VERSION" == "0.18" && "$src_base" == "psshlr_hs_mnemonic.S" ]]; then
+    return 0
+  fi
+
+  return 1
+}
+
 compile_one() {
   local src="$1"
   local out="$2"
@@ -63,6 +76,10 @@ compile_one() {
   if [[ "$rc" -eq 0 ]]; then
     echo "OK   $(basename "$src")"
     PASS=$((PASS + 1))
+  elif [[ "$ALLOW_KNOWN_GAPS" == "1" ]] && is_known_gap "$src"; then
+    echo "GAP  $(basename "$src")"
+    sed -n '1,2p' "$log"
+    KNOWN_GAP_COUNT=$((KNOWN_GAP_COUNT + 1))
   else
     echo "FAIL $(basename "$src")"
     sed -n '1,2p' "$log"
@@ -87,6 +104,9 @@ if [[ "$TOOLCHAIN" == "clang" ]]; then
   echo "L1 smoke clang bin: $CLANG_BIN"
   echo "L1 smoke detected P version: $P_VERSION"
 fi
+if [[ "$ALLOW_KNOWN_GAPS" == "1" ]]; then
+  echo "L1 smoke known-gap override: enabled"
+fi
 
 compile_one asm_l1/psadd_b_mnemonic.S   build/psadd_b_mnemonic.o   build/psadd_b_mnemonic.log
 compile_one asm_l1/pssub_b_mnemonic.S   build/pssub_b_mnemonic.o   build/pssub_b_mnemonic.log
@@ -99,7 +119,7 @@ compile_one asm_l1/pm2adda_h_mnemonic.S build/pm2adda_h_mnemonic.o build/pm2adda
 compile_one asm_l1/pm4add_b_mnemonic.S  build/pm4add_b_mnemonic.o  build/pm4add_b_mnemonic.log
 compile_one asm_l1/pm4adda_b_mnemonic.S build/pm4adda_b_mnemonic.o build/pm4adda_b_mnemonic.log
 
-echo "SUMMARY total=10 pass=$PASS fail=$FAIL"
+echo "SUMMARY total=10 pass=$PASS fail=$FAIL known_gap=$KNOWN_GAP_COUNT"
 if [[ "$FAIL" -gt 0 ]]; then
   exit 1
 fi

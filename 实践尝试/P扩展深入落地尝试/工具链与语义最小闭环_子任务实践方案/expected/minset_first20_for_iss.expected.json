@@ -1,0 +1,206 @@
+{
+  "source": "实践尝试/P扩展深入落地尝试/工具链与语义最小闭环_子任务实践方案/cases/minset_first20_for_iss.json",
+  "case_count": 20,
+  "cases": [
+    {
+      "case_id": "C0000001",
+      "instr": "PSADD.B",
+      "rs1": 2155905152,
+      "rs2": 16843009,
+      "rd_in": 0,
+      "expected_rd": 2172748161,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x81818181"
+    },
+    {
+      "case_id": "C0000002",
+      "instr": "PSADD.B",
+      "rs1": 2139062143,
+      "rs2": 16843009,
+      "rd_in": 0,
+      "expected_rd": 2139062143,
+      "expected_vxsat": 1,
+      "expected_rd_hex": "0x7f7f7f7f"
+    },
+    {
+      "case_id": "C0000003",
+      "instr": "PSADD.B",
+      "rs1": 4294967295,
+      "rs2": 16843009,
+      "rd_in": 0,
+      "expected_rd": 0,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x00000000"
+    },
+    {
+      "case_id": "C0000004",
+      "instr": "PSADD.B",
+      "rs1": 2122219134,
+      "rs2": 33686018,
+      "rd_in": 0,
+      "expected_rd": 2139062143,
+      "expected_vxsat": 1,
+      "expected_rd_hex": "0x7f7f7f7f"
+    },
+    {
+      "case_id": "C0000005",
+      "instr": "PSADD.B",
+      "rs1": 0,
+      "rs2": 0,
+      "rd_in": 0,
+      "expected_rd": 0,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x00000000"
+    },
+    {
+      "case_id": "C0000006",
+      "instr": "PSADD.B",
+      "rs1": 2139062143,
+      "rs2": 2139062143,
+      "rd_in": 0,
+      "expected_rd": 2139062143,
+      "expected_vxsat": 1,
+      "expected_rd_hex": "0x7f7f7f7f"
+    },
+    {
+      "case_id": "C0000007",
+      "instr": "PSADD.B",
+      "rs1": 2155905152,
+      "rs2": 2155905152,
+      "rd_in": 0,
+      "expected_rd": 2155905152,
+      "expected_vxsat": 1,
+      "expected_rd_hex": "0x80808080"
+    },
+    {
+      "case_id": "C0000008",
+      "instr": "PSSUB.B",
+      "rs1": 2155905152,
+      "rs2": 16843009,
+      "rd_in": 0,
+      "expected_rd": 2155905152,
+      "expected_vxsat": 1,
+      "expected_rd_hex": "0x80808080"
+    },
+    {
+      "case_id": "C0000009",
+      "instr": "PSSUB.B",
+      "rs1": 2139062143,
+      "rs2": 16843009,
+      "rd_in": 0,
+      "expected_rd": 2122219134,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x7e7e7e7e"
+    },
+    {
+      "case_id": "C0000010",
+      "instr": "PSSUB.B",
+      "rs1": 4294967295,
+      "rs2": 16843009,
+      "rd_in": 0,
+      "expected_rd": 4278124286,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0xfefefefe"
+    },
+    {
+      "case_id": "C0000011",
+      "instr": "PSSUB.B",
+      "rs1": 2122219134,
+      "rs2": 33686018,
+      "rd_in": 0,
+      "expected_rd": 2088533116,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x7c7c7c7c"
+    },
+    {
+      "case_id": "C0000012",
+      "instr": "PSSUB.B",
+      "rs1": 0,
+      "rs2": 0,
+      "rd_in": 0,
+      "expected_rd": 0,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x00000000"
+    },
+    {
+      "case_id": "C0000013",
+      "instr": "PSSUB.B",
+      "rs1": 2139062143,
+      "rs2": 2139062143,
+      "rd_in": 0,
+      "expected_rd": 0,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x00000000"
+    },
+    {
+      "case_id": "C0000014",
+      "instr": "PSSUB.B",
+      "rs1": 2155905152,
+      "rs2": 2155905152,
+      "rd_in": 0,
+      "expected_rd": 0,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x00000000"
+    },
+    {
+      "case_id": "C0000015",
+      "instr": "PSSHAR.HS",
+      "rs1": 2147516416,
+      "rs2": 239,
+      "rd_in": 0,
+      "expected_rd": 0,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x00000000"
+    },
+    {
+      "case_id": "C0000016",
+      "instr": "PSSHAR.HS",
+      "rs1": 2147516416,
+      "rs2": 240,
+      "rd_in": 0,
+      "expected_rd": 4294967295,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0xffffffff"
+    },
+    {
+      "case_id": "C0000017",
+      "instr": "PSSHAR.HS",
+      "rs1": 2147516416,
+      "rs2": 241,
+      "rd_in": 0,
+      "expected_rd": 4294967295,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0xffffffff"
+    },
+    {
+      "case_id": "C0000018",
+      "instr": "PSSHAR.HS",
+      "rs1": 2147516416,
+      "rs2": 255,
+      "rd_in": 0,
+      "expected_rd": 3221274624,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0xc000c000"
+    },
+    {
+      "case_id": "C0000019",
+      "instr": "PSSHAR.HS",
+      "rs1": 2147516416,
+      "rs2": 0,
+      "rd_in": 0,
+      "expected_rd": 2147516416,
+      "expected_vxsat": 0,
+      "expected_rd_hex": "0x80008000"
+    },
+    {
+      "case_id": "C0000020",
+      "instr": "PSSHAR.HS",
+      "rs1": 2147516416,
+      "rs2": 1,
+      "rd_in": 0,
+      "expected_rd": 2147516416,
+      "expected_vxsat": 1,
+      "expected_rd_hex": "0x80008000"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "source": "cases/minset_first20_for_iss.json",
+  "case_count": 20,
+  "cases": [
+    {
+      "case_id": "C0000001",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000002",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000003",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000004",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000005",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000006",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000007",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000008",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000009",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000010",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000011",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000012",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000013",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000014",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000015",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000016",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000017",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000018",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000019",
+      "status": "ILLEGAL_INSN"
+    },
+    {
+      "case_id": "C0000020",
+      "status": "ILLEGAL_INSN"
+    }
+  ]
+}

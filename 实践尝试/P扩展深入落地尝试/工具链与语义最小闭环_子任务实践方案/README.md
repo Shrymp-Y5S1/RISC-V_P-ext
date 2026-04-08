@@ -45,10 +45,15 @@ bash scripts/wsl_l1_smoke.sh
 
 L1_TOOLCHAIN=gnu bash scripts/wsl_l1_smoke.sh
 
+如需在已知差异下继续推进回归（将 `psshlr.hs` 记为 GAP，不阻塞退出）:
+
+L1_ALLOW_KNOWN_GAPS=1 CLANG_BIN=clang-22 bash scripts/wsl_l1_smoke.sh
+
 说明:
 - `scripts/wsl_l1_smoke.sh` 在 clang 模式会先探测 `experimental-p` 能力，并自动识别本地 `p` 版本号。
 - 若本地 clang 构建未包含该能力，脚本会快速失败并给出提示，避免误判为样例语法问题。
 - 当前 LLVM22 (`p 0.18`) 实测结果: 最小子集 10 条中 9 条可编译，`psshlr.hs` 仍未被识别。
+- 补充同族探针结果（clang-22, `rv64i_p0p18`）: `pssha.hs` / `psshar.hs` 可识别，`psshl.hs` / `psshlr.hs` 不可识别。
 
 语义闭环（WSL2）建议运行:
 
@@ -67,3 +72,41 @@ Windows PowerShell:
 python scripts/gen_cases.py --out cases/week1_seed20260405.json --seeds 20260405 --random-per-seed 200
 python scripts/model_eval.py --cases cases/week1_seed20260405.json --out expected/week1_seed20260405.expected.json
 python scripts/diff.py --expected expected/week1_seed20260405.expected.json --actual actual/week1_seed20260405.actual.json --out reports/diff-week1.csv
+
+## T5/T6 快速推进（推荐）
+
+1. 导出给 ISS/DUT 的执行子集（先跑 20 条）：
+
+python3 scripts/export_iss_cases.py --cases cases/minset_seed_1_7_42_20260405.json --out-json cases/minset_first20_for_iss.json --out-csv cases/minset_first20_for_iss.csv --out-raw-template actual/minset_first20_raw_template.csv --start 0 --limit 20
+
+2. 将 ISS/DUT 原始日志转换为 actual（支持 json/csv/txt）：
+
+python3 scripts/build_actual_from_raw.py --raw actual/minset_first20_raw.csv --out actual/minset_first20.actual.json
+
+3. 为 first20 输入生成对应 expected：
+
+python3 scripts/model_eval.py --cases cases/minset_first20_for_iss.json --out expected/minset_first20_for_iss.expected.json
+
+4. 执行差分并生成归因摘要：
+
+python3 scripts/diff.py --expected expected/minset_first20_for_iss.expected.json --actual actual/minset_first20.actual.json --out reports/diff-minset-first20.csv
+python3 scripts/summarize_diff.py --diff reports/diff-minset-first20.csv --out reports/diff-minset-first20-summary.md
+
+5. WSL 一键闭环可直接接 raw 输入：
+
+ACTUAL_RAW_IN=actual/minset_first20_raw.csv ACTUAL_IN=actual/minset_first20.actual.json DIFF_OUT=reports/diff-minset-first20.csv DIFF_SUMMARY_OUT=reports/diff-minset-first20-summary.md bash scripts/wsl_run_minset.sh
+
+## WSL2 QEMU 路径实测
+
+已新增 qemu 执行脚本：
+
+- python3 scripts/run_qemu_cases.py --cases cases/minset_first20_for_iss.json --out-raw actual/minset_first20_qemu_raw.csv --out-actual actual/minset_first20_qemu.actual.json
+- bash scripts/wsl_qemu_first20.sh
+
+本机实测结果（2026-04-08）：
+
+- qemu: `/usr/bin/qemu-riscv64-static`（8.2.2）
+- first20 结果：`status[ILLEGAL_INSN]=20`
+- diff: `pass=0, fail=20`，归因为 `CONFIG_MISMATCH`
+
+结论：当前 WSL2 自带 qemu-user 路径可用于输出阻塞证据，但不能产出有效 `actual_rd`（P 指令执行即非法指令）。

@@ -8,9 +8,12 @@
 3. 若汇编失败，请记录报错并回退到 L0 .insn 路径。
 4. 建议保留失败日志到 reports/smoke-week1-template.md。
 5. LLVM22 (`p 0.18`) 下当前实测为 9/10 通过，`psshlr.hs` 报 `unrecognized instruction mnemonic`。
+6. 补充同族探针（clang-22, `rv64i_p0p18`）显示：`pssha.hs` / `psshar.hs` 可识别，`psshl.hs` / `psshlr.hs` 不可识别。
+7. 如需让该已知差异不阻塞流水，可开启 `L1_ALLOW_KNOWN_GAPS=1`，失败项会被计为 `GAP`。
 
 建议命令:
 - bash scripts/wsl_l1_smoke.sh
 - L1_TOOLCHAIN=gnu bash scripts/wsl_l1_smoke.sh
 - CLANG_BIN=clang-22 CLANG_MABI=lp64 bash scripts/wsl_l1_smoke.sh
 - CLANG_BIN=clang-22 CLANG_MARCH=rv64i_p0p18 CLANG_MABI=lp64 bash scripts/wsl_l1_smoke.sh
+- L1_ALLOW_KNOWN_GAPS=1 CLANG_BIN=clang-22 bash scripts/wsl_l1_smoke.sh

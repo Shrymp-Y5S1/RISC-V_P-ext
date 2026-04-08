@@ -31,6 +31,10 @@
 - /usr/lib/llvm-22/bin/llvm-objdump --version: Ubuntu LLVM version 22.1.3
 - clang-22 experimental 扩展探针: `--print-supported-extensions` 出现 `p 0.18`
 - clang-22 L1 助记符冒烟: 最小子集 10 条通过 9 条（仅 `psshlr.hs` 未识别）
+- clang-22 同族助记符探针（HS 变体）: `pssha.hs` / `psshar.hs` 可识别，`psshl.hs` / `psshlr.hs` 不可识别
+- qemu-riscv64-static --version: qemu-riscv64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.14)
+- qemu first20 执行: 20/20 `ILLEGAL_INSN`（P 子集在当前 qemu-user 路径不可执行）
+- qemu first20 最新回归时间: 2026-04-08 08:48（本地）
 
 ## 4. 执行环境
 
@@ -48,6 +52,7 @@
   - clang-22 --target=riscv64-unknown-elf -menable-experimental-extensions -march=rv64i_p0p18 -mabi=lp64 -c asm_l1/psadd_b_mnemonic.S -o build/psadd_b_mnemonic.o
   - bash scripts/wsl_l1_smoke.sh
   - CLANG_BIN=clang-22 bash scripts/wsl_l1_smoke.sh
+  - L1_ALLOW_KNOWN_GAPS=1 CLANG_BIN=clang-22 bash scripts/wsl_l1_smoke.sh
   - L1_TOOLCHAIN=gnu bash scripts/wsl_l1_smoke.sh
 - 样例生成:
   - python scripts/gen_cases.py --out cases/week1_seed20260405.json --seeds 20260405 --random-per-seed 200
@@ -55,6 +60,8 @@
   - python scripts/model_eval.py --cases cases/week1_seed20260405.json --out expected/week1_seed20260405.expected.json
 - 差分命令:
   - python scripts/diff.py --expected expected/week1_seed20260405.expected.json --actual actual/week1_seed20260405.actual.json --out reports/diff-week1.csv
+  - bash scripts/wsl_qemu_first20.sh
+  - 结果报告: reports/smoke-qemu-first20-wsl2-20260408.md
 
 ## 6. 版本变更记录
 
@@ -64,3 +71,5 @@
 - 2026-04-07: 新增 LLVM19 口径信息与能力探针结论（Ubuntu clang-19.1.1 未暴露 experimental-p）。
 - 2026-04-08: 回填 LLVM21 安装与探针结果（支持 `p 0.14`，但 L1 最小子集助记符仍不可达）。
 - 2026-04-08: 回填 LLVM22 安装与探针结果（支持 `p 0.18`，L1 最小子集提升至 9/10）。
+- 2026-04-08: 新增 clang-22 同族助记符探针结论（`pssha/psshar` 可达，`psshl/psshlr` 不可达）与 known-gap 回归命令。
+- 2026-04-08: 新增 qemu-user first20 实测（全部 `ILLEGAL_INSN`）与 qemu 路径 T5/T6 脚本证据。
