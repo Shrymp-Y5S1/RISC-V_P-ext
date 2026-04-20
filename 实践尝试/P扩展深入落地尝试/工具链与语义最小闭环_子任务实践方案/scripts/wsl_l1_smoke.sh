@@ -76,6 +76,8 @@ compile_one() {
   if [[ "$rc" -eq 0 ]]; then
     echo "OK   $(basename "$src")"
     PASS=$((PASS + 1))
+    echo "---- Disassembly for $(basename "$src") ----" >> "$log"
+    llvm-objdump --mattr=+experimental-p -d "$out" >> "$log" 2>&1
   elif [[ "$ALLOW_KNOWN_GAPS" == "1" ]] && is_known_gap "$src"; then
     echo "GAP  $(basename "$src")"
     sed -n '1,2p' "$log"

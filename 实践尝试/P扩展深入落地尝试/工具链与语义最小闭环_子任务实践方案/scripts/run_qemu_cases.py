@@ -40,24 +40,38 @@ def load_cases(path: Path) -> List[Dict]:
     raise ValueError("Unsupported cases format")
 
 
-def render_asm(rs1: int, rs2: int, rd_in: int, insn_word: int) -> str:
-    return "\n".join(
+def render_asm(
+    rs1: int, rs2: int, rd_in: int, insn_word: int, capture_vxsat: bool
+) -> str:
+    lines = [
+        ".section .bss",
+        ".align 3",
+        "outbuf:",
+        "  .space 16",
+        "",
+        ".section .text",
+        ".global _start",
+        "_start:",
+        f"  li a1, {to_u32(rs1)}",
+        f"  li a2, {to_u32(rs2)}",
+        f"  li a0, {to_u32(rd_in)}",
+        f"  .word 0x{insn_word:08x}",
+        "  la t0, outbuf",
+        "  sd a0, 0(t0)",
+    ]
+
+    if capture_vxsat:
+        lines.extend(
+            [
+                "  csrr t1, 0x009",
+                "  andi t1, t1, 1",
+            ]
+        )
+    else:
+        lines.append("  li t1, 0")
+
+    lines.extend(
         [
-            ".section .bss",
-            ".align 3",
-            "outbuf:",
-            "  .space 16",
-            "",
-            ".section .text",
-            ".global _start",
-            "_start:",
-            f"  li a1, {to_u32(rs1)}",
-            f"  li a2, {to_u32(rs2)}",
-            f"  li a0, {to_u32(rd_in)}",
-            f"  .word 0x{insn_word:08x}",
-            "  la t0, outbuf",
-            "  sd a0, 0(t0)",
-            "  li t1, 0",
             "  sd t1, 8(t0)",
             "",
             "  li a0, 1",
@@ -73,6 +87,8 @@ def render_asm(rs1: int, rs2: int, rd_in: int, insn_word: int) -> str:
         ]
     )
 
+    return "\n".join(lines)
+
 
 def first_stderr_line(text: str) -> str:
     for line in text.splitlines():
@@ -86,6 +102,8 @@ def run_one_case(
     case: Dict,
     gcc_bin: str,
     qemu_bin: str,
+    qemu_cpu: str,
+    capture_vxsat: bool,
     timeout_sec: float,
 ) -> Dict:
     case_id = str(case["case_id"])
@@ -113,7 +131,9 @@ def run_one_case(
         asm_path = tdp / "case.S"
         elf_path = tdp / "case.elf"
 
-        asm_path.write_text(render_asm(rs1, rs2, rd_in, insn_word), encoding="utf-8")
+        asm_path.write_text(
+            render_asm(rs1, rs2, rd_in, insn_word, capture_vxsat), encoding="utf-8"
+        )
 
         compile_cmd = [
             gcc_bin,
@@ -131,9 +151,14 @@ def run_one_case(
             out["note"] = first_stderr_line(cp.stderr)
             return out
 
+        qemu_cmd = [qemu_bin]
+        if qemu_cpu:
+            qemu_cmd.extend(["-cpu", qemu_cpu])
+        qemu_cmd.append(str(elf_path))
+
         try:
             rp = subprocess.run(
-                [qemu_bin, str(elf_path)],
+                qemu_cmd,
                 capture_output=True,
                 timeout=timeout_sec,
             )
@@ -249,6 +274,17 @@ def main() -> None:
         default="/usr/bin/qemu-riscv64-static",
         help="qemu 可执行路径",
     )
+    parser.add_argument(
+        "--qemu-cpu",
+        type=str,
+        default="",
+        help="可选 CPU 参数（示例: max,x-p=true）",
+    )
+    parser.add_argument(
+        "--capture-vxsat",
+        action="store_true",
+        help="通过 CSR 0x009 读取 vxsat（默认关闭）",
+    )
     parser.add_argument("--limit", type=int, default=0, help="只跑前 N 条，0 表示全量")
     parser.add_argument("--timeout", type=float, default=3.0, help="单 case 超时秒数")
     args = parser.parse_args()
@@ -256,7 +292,17 @@ def main() -> None:
     all_cases = load_cases(args.cases)
     cases = all_cases[: args.limit] if args.limit > 0 else all_cases
 
-    rows = [run_one_case(c, args.gcc_bin, args.qemu_bin, args.timeout) for c in cases]
+    rows = [
+        run_one_case(
+            c,
+            args.gcc_bin,
+            args.qemu_bin,
+            args.qemu_cpu,
+            args.capture_vxsat,
+            args.timeout,
+        )
+        for c in cases
+    ]
 
     write_raw_csv(args.out_raw, rows)
     write_actual_json(args.out_actual, rows, args.cases)

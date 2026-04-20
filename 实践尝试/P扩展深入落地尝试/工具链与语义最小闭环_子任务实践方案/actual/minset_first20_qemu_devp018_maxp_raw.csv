@@ -1,0 +1,21 @@
+case_id,instr,actual_rd,actual_vxsat,status,note
+C0000001,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000002,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000003,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000004,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000005,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000006,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000007,PSADD.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000008,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000009,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000010,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000011,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000012,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000013,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000014,PSSUB.B,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000015,PSSHAR.HS,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000016,PSSHAR.HS,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000017,PSSHAR.HS,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000018,PSSHAR.HS,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000019,PSSHAR.HS,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found
+C0000020,PSSHAR.HS,,,RUNTIME_FAIL,qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found

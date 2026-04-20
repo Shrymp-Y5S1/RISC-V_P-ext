@@ -9,6 +9,15 @@
 - 文档快照日期: 2026-04-07
 - 文档关键锚点版本说明: working draft
 
+补充（2026-04-08）:
+
+- `riscv/riscv-p-spec` 的 Links 小节明确给出 v0.18 参考实现链。
+- draft 参考入口: https://www.jhauser.us/RISCV/ext-P/
+- v0.18 gcc: https://github.com/ruyisdk/riscv-gcc/tree/p-dev
+- v0.18 binutils: https://github.com/ruyisdk/riscv-binutils/tree/p-dev
+- v0.18 intrinsics (WIP): https://github.com/topperc/p-ext-intrinsics
+- v0.18 qemu: https://github.com/mollybuild/qemu/tree/dev-p-018
+
 ## 2. 仓库与提交信息
 
 - 主仓库 commit: e98bd80
@@ -73,3 +82,4 @@
 - 2026-04-08: 回填 LLVM22 安装与探针结果（支持 `p 0.18`，L1 最小子集提升至 9/10）。
 - 2026-04-08: 新增 clang-22 同族助记符探针结论（`pssha/psshar` 可达，`psshl/psshlr` 不可达）与 known-gap 回归命令。
 - 2026-04-08: 新增 qemu-user first20 实测（全部 `ILLEGAL_INSN`）与 qemu 路径 T5/T6 脚本证据。
+- 2026-04-08: 新增 riscv-p-spec Links 的 v0.18 参考实现链记录（ruyisdk gcc/binutils p-dev，mollybuild qemu dev-p-018，topperc intrinsics）。

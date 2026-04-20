@@ -26,3 +26,9 @@ ehthumbs.db
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+
+# Python virtual environment
+.venv/
+
+# Generated build artifacts for the P-extension subtask
+实践尝试/P扩展深入落地尝试/工具链与语义最小闭环_子任务实践方案/build/

@@ -110,3 +110,82 @@ ACTUAL_RAW_IN=actual/minset_first20_raw.csv ACTUAL_IN=actual/minset_first20.actu
 - diff: `pass=0, fail=20`，归因为 `CONFIG_MISMATCH`
 
 结论：当前 WSL2 自带 qemu-user 路径可用于输出阻塞证据，但不能产出有效 `actual_rd`（P 指令执行即非法指令）。
+
+## v0.18 参考实现链（2026-04-08 新增）
+
+根据 `riscv/riscv-p-spec` 的 Links 小节，当前可用参考链路为：
+
+- John Hauser draft: https://www.jhauser.us/RISCV/ext-P/
+- v0.18 gcc: https://github.com/ruyisdk/riscv-gcc/tree/p-dev
+- v0.18 binutils: https://github.com/ruyisdk/riscv-binutils/tree/p-dev
+- v0.18 intrinsics (WIP): https://github.com/topperc/p-ext-intrinsics
+- v0.18 qemu: https://github.com/mollybuild/qemu/tree/dev-p-018
+
+这组线索与当前阻塞高度相关：
+
+1. 我们当前 `/usr/bin/qemu-riscv64-static`（8.2.2）不支持本 P 子集执行（first20 为 `ILLEGAL_INSN` 20/20）。
+2. 可优先尝试将 `QEMU_BIN` 切到 `dev-p-018` 构建产物后复跑：
+
+```bash
+QEMU_BIN=/path/to/dev-p-018/build/qemu-riscv64 bash scripts/wsl_qemu_first20.sh
+```
+
+3. 若切换后出现可执行样例（`status[OK] > 0`），即可沿现有链路直接进入真实 T5/T6 对拍，不需改脚本：
+
+```bash
+python3 scripts/build_actual_from_raw.py --raw actual/minset_first20_qemu_raw.csv --out actual/minset_first20_qemu.actual.json
+python3 scripts/diff.py --expected expected/minset_first20_for_iss.expected.json --actual actual/minset_first20_qemu.actual.json --out reports/diff-minset-first20-qemu.csv
+python3 scripts/summarize_diff.py --diff reports/diff-minset-first20-qemu.csv --out reports/diff-minset-first20-qemu-summary.md
+```
+
+## x-p 口径推进更新（2026-04-20）
+
+在 `dev-p-018` 上完成组A后，继续将 first20 切到 `x-p` 口径并补齐 `vxsat` 采集：
+
+```bash
+QEMU_BIN=/home/shrymp/qemu-devp018-work/qemu-src/build/qemu-riscv64 \
+QEMU_CPU=max,x-p=true \
+CAPTURE_VXSAT=1 \
+RAW_OUT=actual/minset_first20_qemu_devp018_xp_vxsat_raw.csv \
+ACTUAL_OUT=actual/minset_first20_qemu_devp018_xp_vxsat.actual.json \
+DIFF_OUT=reports/diff-minset-first20-qemu-devp018-xp-vxsat.csv \
+SUMMARY_OUT=reports/diff-minset-first20-qemu-devp018-xp-vxsat-summary.md \
+bash scripts/wsl_qemu_first20.sh
+```
+
+结果（first20）：
+
+- `status[OK]=20`
+- `pass=19, fail=1`
+- 唯一剩余差异：`C0000015 / PSSHAR.HS`（`expected_rd=0x00000000`, `actual_rd=0xffffffff`）
+
+说明：
+
+- 早先 `pass=13, fail=7` 的 6 条差异主要来自 `vxsat` 采集链路缺失（旧路径把 second word 固定写 0）。
+- 已新增 `scripts/wsl_probe_vxsat_once.sh` 用于单例验证 CSR `0x009` 读取；在饱和样例上可观测到 `probe_vxsat=1`。
+
+## PSSHAR.HS 上游最小复现入口（2026-04-20）
+
+针对当前唯一剩余差异（`C0000015 / PSSHAR.HS`），已补充“一键复现实验 + issue 草稿”。
+
+1. 一键复现（默认使用 `x-p` + `vxsat` 采集）：
+
+```bash
+bash scripts/wsl_repro_psshar_hs_xp_issue.sh
+```
+
+默认输入与输出：
+
+- 输入样例：`cases/psshar_hs_shift_sweep_xp_20260420.json`（`rs2=0xE0..0xFF`）
+- 期望文件：`expected/psshar_hs_shift_sweep_xp_20260420.expected.json`
+- diff 输出：`reports/diff-psshar_hs_shift_sweep_xp_repro.csv`
+- 摘要输出：`reports/diff-psshar_hs_shift_sweep_xp_repro-summary.md`
+
+2. 上游 issue 草稿（可直接粘贴）：
+
+- `reports/upstream-issue-psshar-hs-xp-e0-ef-20260420.md`
+
+当前观测窗口：
+
+- `rs2=0xE0..0xEF`：模型期望 `0x00000000`，QEMU 返回 `0xffffffff`
+- `rs2=0xF0..0xFF`：与模型一致

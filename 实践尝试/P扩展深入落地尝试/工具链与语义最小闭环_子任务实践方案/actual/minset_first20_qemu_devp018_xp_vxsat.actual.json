@@ -1,0 +1,126 @@
+{
+  "source": "cases/minset_first20_for_iss.json",
+  "case_count": 20,
+  "cases": [
+    {
+      "case_id": "C0000001",
+      "status": "OK",
+      "actual_rd": 2172748161,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000002",
+      "status": "OK",
+      "actual_rd": 2139062143,
+      "actual_vxsat": 1
+    },
+    {
+      "case_id": "C0000003",
+      "status": "OK",
+      "actual_rd": 0,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000004",
+      "status": "OK",
+      "actual_rd": 2139062143,
+      "actual_vxsat": 1
+    },
+    {
+      "case_id": "C0000005",
+      "status": "OK",
+      "actual_rd": 0,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000006",
+      "status": "OK",
+      "actual_rd": 2139062143,
+      "actual_vxsat": 1
+    },
+    {
+      "case_id": "C0000007",
+      "status": "OK",
+      "actual_rd": 2155905152,
+      "actual_vxsat": 1
+    },
+    {
+      "case_id": "C0000008",
+      "status": "OK",
+      "actual_rd": 2155905152,
+      "actual_vxsat": 1
+    },
+    {
+      "case_id": "C0000009",
+      "status": "OK",
+      "actual_rd": 2122219134,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000010",
+      "status": "OK",
+      "actual_rd": 4278124286,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000011",
+      "status": "OK",
+      "actual_rd": 2088533116,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000012",
+      "status": "OK",
+      "actual_rd": 0,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000013",
+      "status": "OK",
+      "actual_rd": 0,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000014",
+      "status": "OK",
+      "actual_rd": 0,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000015",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000016",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000017",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000018",
+      "status": "OK",
+      "actual_rd": 3221274624,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000019",
+      "status": "OK",
+      "actual_rd": 2147516416,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "C0000020",
+      "status": "OK",
+      "actual_rd": 2147516416,
+      "actual_vxsat": 1
+    }
+  ]
+}

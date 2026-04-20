@@ -1,0 +1,106 @@
+{
+  "source": "cases/minset_first20_for_iss.json",
+  "case_count": 20,
+  "cases": [
+    {
+      "case_id": "C0000001",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000002",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000003",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000004",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000005",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000006",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000007",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000008",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000009",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000010",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000011",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000012",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000013",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000014",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000015",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000016",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000017",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000018",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000019",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    },
+    {
+      "case_id": "C0000020",
+      "status": "RUNTIME_FAIL",
+      "note": "qemu-riscv64: can't apply global max-riscv-cpu.p=true: Property 'max-riscv-cpu.p' not found"
+    }
+  ]
+}
