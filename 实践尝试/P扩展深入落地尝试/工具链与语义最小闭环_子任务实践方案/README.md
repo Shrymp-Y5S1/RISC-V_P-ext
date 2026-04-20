@@ -189,3 +189,17 @@ bash scripts/wsl_repro_psshar_hs_xp_issue.sh
 
 - `rs2=0xE0..0xEF`：模型期望 `0x00000000`，QEMU 返回 `0xffffffff`
 - `rs2=0xF0..0xFF`：与模型一致
+
+## dev-p-020 回归结论（2026-04-20）
+
+已在 `dev-p-020` 分支完成同口径复测（`x-p + CAPTURE_VXSAT=1`），结果如下：
+
+1. first20：`pass=19, fail=1`，唯一失败仍为 `C0000015 / PSSHAR.HS`。
+2. PSSHAR 边界 sweep（`rs2=0xE0..0xFF`）：`pass=16, fail=16`，失败窗口仍是 `0xE0..0xEF`。
+3. 与 `dev-p-018` 的 CSV 结果直接对比无差异。
+
+结论：`dev-p-020` 未消除该窗口差异，可以据此继续发 issue。
+
+详情见：
+
+- `reports/smoke-qemu-dev-p-020-regression-summary-20260420.md`

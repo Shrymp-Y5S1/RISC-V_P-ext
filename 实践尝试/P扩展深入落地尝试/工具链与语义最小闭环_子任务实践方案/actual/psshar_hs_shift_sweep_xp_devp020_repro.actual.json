@@ -1,0 +1,198 @@
+{
+  "source": "cases/psshar_hs_shift_sweep_xp_20260420.json",
+  "case_count": 32,
+  "cases": [
+    {
+      "case_id": "S0001",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0002",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0003",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0004",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0005",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0006",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0007",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0008",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0009",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0010",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0011",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0012",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0013",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0014",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0015",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0016",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0017",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0018",
+      "status": "OK",
+      "actual_rd": 4294967295,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0019",
+      "status": "OK",
+      "actual_rd": 4294901758,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0020",
+      "status": "OK",
+      "actual_rd": 4294770684,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0021",
+      "status": "OK",
+      "actual_rd": 4294508536,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0022",
+      "status": "OK",
+      "actual_rd": 4293984240,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0023",
+      "status": "OK",
+      "actual_rd": 4292935648,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0024",
+      "status": "OK",
+      "actual_rd": 4290838464,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0025",
+      "status": "OK",
+      "actual_rd": 4286644096,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0026",
+      "status": "OK",
+      "actual_rd": 4278255360,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0027",
+      "status": "OK",
+      "actual_rd": 4261477888,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0028",
+      "status": "OK",
+      "actual_rd": 4227922944,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0029",
+      "status": "OK",
+      "actual_rd": 4160813056,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0030",
+      "status": "OK",
+      "actual_rd": 4026593280,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0031",
+      "status": "OK",
+      "actual_rd": 3758153728,
+      "actual_vxsat": 0
+    },
+    {
+      "case_id": "S0032",
+      "status": "OK",
+      "actual_rd": 3221274624,
+      "actual_vxsat": 0
+    }
+  ]
+}
